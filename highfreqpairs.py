@@ -3,7 +3,7 @@
 import sys;
 from sets import Set;
 
-inputFile = open("test_25.txt" ,"r");
+inputFile = open("test_100.txt" ,"r");
 inputMap = {};
 likesAndCountsMap = {};
 likePairsAndCountsMap = {};
@@ -16,6 +16,23 @@ for line in inputFile:
 	uid = wordList[0];
 	inputMap[uid] = [];
 	wordList.remove(wordList[0]);
+	i = 0;
+	while(i<len(wordList)):
+		j = i+1;
+		while(j < len(wordList)):
+			pair = wordList[i]+","+wordList[j];
+			rPair = wordList[j]+","+wordList[i];
+			if pair in likePairsAndCountsMap:
+				likePairsAndCountsMap[pair] += 1;
+			elif rPair in likePairsAndCountsMap:
+				likePairsAndCountsMap[rPair] += 1;
+			else:
+				likePairsAndCountsMap[pair] = 1;
+			
+			j += 1;
+			
+		i += 1;
+	'''
 	for word in wordList:
 		inputMap[uid].append(word);
 		if word in likesAndUIDsMap:
@@ -44,5 +61,6 @@ while(i < len(allLikes)):
 				print word+"\t"+str(likePairsAndCountsMap[word]);
 		j += 1;
 	i += 1;
-
-print likePairsAndCountsMap;
+'''
+for entry in likePairsAndCountsMap:
+	print entry+"\t"+str(likePairsAndCountsMap[entry]);
