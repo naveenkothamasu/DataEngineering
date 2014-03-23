@@ -2,6 +2,7 @@
 
 import sys;
 from sets import Set;
+import time;
 
 inputFile = open("test_100.txt" ,"r");
 inputMap = {};
@@ -9,7 +10,7 @@ likesAndCountsMap = {};
 likePairsAndCountsMap = {};
 allLikes = [];
 likesAndUIDsMap = {};
-
+start = time.time();
 for line in inputFile:
 	line = line.lower();
 	wordList = line.split(",");
@@ -32,5 +33,8 @@ for line in inputFile:
 			j += 1;
 			
 		i += 1;
+'''
 for entry in likePairsAndCountsMap:
 	print entry+"\t"+str(likePairsAndCountsMap[entry]);
+'''
+print time.time()-start;
