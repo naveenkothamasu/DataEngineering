@@ -5,7 +5,7 @@ import random;
 
 inputFileName = "likes.csv";
 inputFile = open(inputFileName, "r");
-outputFile = open("test_10.txt", "w");
+outputFile = open("test_3.txt", "w");
 inputData = [];
 for line in inputFile:
 	inputData.append(line)
@@ -15,4 +15,4 @@ while(i<10):
 	outputFile.write(inputData[random.randint(0,len(inputData)-1)]);
 	i+=1;
 outputFile.close();
-print "Generated test_10.txt"
+print "Generated test_3.txt"
