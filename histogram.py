@@ -37,7 +37,7 @@ print np.histogram(likesAndCountsMap.values(), bins=np.arange(0,len(allLikes)));
 '''
 
 plt.axes().set_xticks(np.arange(len(allLikes))+0.5);
-plt.axes().set_xticklabels(unicode(likesAndCountsMap.keys()));
+plt.axes().set_xticklabels(unicode(likesAndCountsMap.keys()),rotation=40,ha='left');
 
 hist_x = len(likesAndCountsMap.values());
 plt.bar(np.arange(hist_x),likesAndCountsMap.values(),width=1.0, color='r');

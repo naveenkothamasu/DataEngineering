@@ -10,25 +10,30 @@ likesAndCountsMap = {};
 likePairsAndCountsMap = {};
 allLikes = [];
 likesAndUIDsMap = {};
+topLikePairs = []; #heap initialization
+
 start = time.time();
 for line in inputFile:
 	line = line.lower();
-	wordList = line.split(",");
-	uid = wordList[0];
+	messageList = line.split(",");
+	uid = messageList[0];
 	inputMap[uid] = [];
-	wordList.remove(wordList[0]);
+	messageList.remove(messageList[0]);
 	i = 0;
-	while(i<len(wordList)):
+	while(i<len(messageList)):
 		j = i+1;
-		while(j < len(wordList)):
-			pair = wordList[i]+","+wordList[j];
-			rPair = wordList[j]+","+wordList[i];
+		while(j < len(messageList)):
+			pair = messageList[i]+","+ messageList[j];
+			rPair = messageList[j]+","+ messageList[i];
 			if pair in likePairsAndCountsMap:
 				likePairsAndCountsMap[pair] += 1;
+				heappush(topLikePairs, (likesPairsAndCountsMap[pair], pair));
 			elif rPair in likePairsAndCountsMap:
 				likePairsAndCountsMap[rPair] += 1;
+				heappush(topLikePairs, (likesPairsAndCountsMap[rpair], rPair));
 			else:
 				likePairsAndCountsMap[pair] = 1;
+				heappush(topLikePairs, (1, pair));
 			
 			j += 1;
 			
