@@ -3,8 +3,9 @@
 import sys;
 from sets import Set;
 import time;
+import heapq;
 
-inputFile = open("test_100.txt" ,"r");
+inputFile = open("test.txt" ,"r");
 inputMap = {};
 likesAndCountsMap = {};
 likePairsAndCountsMap = {};
@@ -26,20 +27,22 @@ for line in inputFile:
 			pair = messageList[i]+","+ messageList[j];
 			rPair = messageList[j]+","+ messageList[i];
 			if pair in likePairsAndCountsMap:
-				likePairsAndCountsMap[pair] += 1;
-				heappush(topLikePairs, (likesPairsAndCountsMap[pair], pair));
+				#likePairsAndCountsMap[pair] += 1;
+				heapq._siftup(topLikePairs, (likesPairsAndCountsMap[pair], pair));
 			elif rPair in likePairsAndCountsMap:
-				likePairsAndCountsMap[rPair] += 1;
-				heappush(topLikePairs, (likesPairsAndCountsMap[rpair], rPair));
+				#likePairsAndCountsMap[rPair] += 1;
+				heapq._siftup(topLikePairs, (likesPairsAndCountsMap[rpair], rPair));
 			else:
-				likePairsAndCountsMap[pair] = 1;
-				heappush(topLikePairs, (1, pair));
-			
+				#likePairsAndCountsMap[pair] = 1;
+				heapq.heappush(topLikePairs, (1, pair));
 			j += 1;
 			
 		i += 1;
-'''
+
 for entry in likePairsAndCountsMap:
-	print entry+"\t"+str(likePairsAndCountsMap[entry]);
-'''
+	if(likePairsAndCountsMap[entry] >= 2):
+		print entry+"\t"+str(likePairsAndCountsMap[entry]);
+
 print time.time()-start;
+print heapq.heappop(topLikePairs);
+print heapq.heappop(topLikePairs);
